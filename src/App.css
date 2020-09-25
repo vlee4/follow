@@ -1,8 +1,35 @@
-.App {
-  text-align: center;
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
+body {
+  margin: 0px;
 }
 
-.App-logo {
+.App {
+  text-align: center;
+  margin: 0em 0 0 0;
+  position: relative;
+  min-height: 100vh;
+}
+
+.navbar {
+  padding: 1em 0 1em 0;
+  background-color: darkcyan;
+  top: 0px;
+  width: 100%;
+}
+
+.foot {
+  position: absolute;
+  color: white;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 4em;
+  background-color: darkcyan;
+}
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +62,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
