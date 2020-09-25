@@ -11,13 +11,14 @@ body {
   margin: 0em 0 0 0;
   position: relative;
   min-height: 100vh;
+  width: 100vw;
 }
 
 .navbar {
   padding: 1em 0 1em 0;
   background-color: darkcyan;
   top: 0px;
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,6 +58,43 @@ body {
   height: 4em;
   background-color: darkcyan;
 }
+
+/* Tracker components */
+.tracker {
+  border: black dashed;
+  width: auto;
+  height: 100%;
+}
+
+.expensesWindow {
+  border: black solid;
+  margin: 2em;
+  padding: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border: purple dotted;
+  padding: 1em;
+  width: auto;
+  max-width: 100%;
+}
+
+td {
+  overflow: hidden;
+  white-space: break-spaces;
+  text-overflow: ellipsis;
+}
+/* Expenses */
+.trackerView {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1em;
+  border: blue double;
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
