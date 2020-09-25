@@ -1,16 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Tracker from "./ExpenseTracker";
 
 function Routes() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route exat path="/tracker" component={Tracker} />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/tracker" component={Tracker} />
+    </Switch>
   );
 }
 
