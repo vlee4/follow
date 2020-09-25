@@ -18,6 +18,12 @@ body {
   background-color: darkcyan;
   top: 0px;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#title {
+  margin: 0 0 0 1em;
 }
 
 .foot {

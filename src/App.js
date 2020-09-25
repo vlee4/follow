@@ -1,15 +1,14 @@
 import React from "react";
-// import logo from "./logo.svg";
 import "./App.css";
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
+import Routes from "./Components/Routes";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <h1>Follow Your Money</h1>
-      <Home />
+      <Routes />
       <footer className="foot">
         <div>Created: September 2020</div>
         <div>
