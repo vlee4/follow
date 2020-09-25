@@ -6,7 +6,7 @@ import Tracker from "./ExpenseTracker";
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/follow/home" component={Home} />
+      <Route exact path="/follow/" component={Home} />
       <Route path="/follow/tracker" component={Tracker} />
     </Switch>
   );
