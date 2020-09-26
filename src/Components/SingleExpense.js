@@ -25,6 +25,12 @@ function SingleExpense(props) {
       <td>{props.account || `Acct #1337108049384039 839doj odsf 82`}</td>
       <td>{props.category || "Entertainment"}</td>
       <td>{AMOUNT || "$100"}</td>
+      <td>
+        <button>Edit</button>
+      </td>
+      <td>
+        <button>Delete</button>
+      </td>
     </tr>
   );
 }
