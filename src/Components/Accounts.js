@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function Accounts() {
   return (
@@ -8,4 +9,4 @@ function Accounts() {
   );
 }
 
-export default Accounts;
+export default connect()(Accounts);

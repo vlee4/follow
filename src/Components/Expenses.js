@@ -1,7 +1,36 @@
 import React from "react";
 import SingleExpense from "./SingleExpense";
+import AddExpense from "./AddExpense";
+import { findExpenses } from "../Store/expenseReducer";
+import { connect } from "react-redux";
 
 class Expenses extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      adding: false,
+      expenses: [],
+    };
+    this.handleAddition = this.handleAddition.bind(this);
+    this.cancel = this.cancel.bind(this);
+  }
+
+  handleAddition() {
+    this.setState({ adding: true });
+  }
+
+  cancel() {
+    this.setState({ adding: false });
+  }
+
+  componentDidMount() {
+    const exp = this.props.getExp();
+    console.log("Here's the expenses", exp);
+    if (exp) {
+      this.setState({ expenses: exp });
+    }
+  }
+
   render() {
     const mockData = [
       {
@@ -26,6 +55,17 @@ class Expenses extends React.Component {
         Amount: 10330,
       },
     ];
+    if (this.state.expenses.length === 0) {
+      return (
+        <div>
+          <h3>EXPENSES</h3>
+          <div>
+            There are currently no expenses to be displayed. Please add an entry
+            to begin tracking your expenses.
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="expensesWindow">
@@ -54,9 +94,31 @@ class Expenses extends React.Component {
             })}
           </tbody>
         </table>
+        {this.state.adding ? <AddExpense /> : ""}
+        {this.state.adding ? (
+          <button type="button" onClick={this.cancel}>
+            Cancel
+          </button>
+        ) : (
+          <button name="addExpense" onClick={this.handleAddition}>
+            +
+          </button>
+        )}
       </div>
     );
   }
 }
 
-export default Expenses;
+const mapState = (state) => {
+  return {
+    expenses: state.expenses,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    getExp: () => dispatch(findExpenses()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Expenses);

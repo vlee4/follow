@@ -1,5 +1,6 @@
 import React from "react";
 import View from "./View";
+import { connect } from "react-redux";
 
 class ExpenseTracker extends React.Component {
   constructor() {
@@ -34,4 +35,4 @@ class ExpenseTracker extends React.Component {
   }
 }
 
-export default ExpenseTracker;
+export default connect()(ExpenseTracker);

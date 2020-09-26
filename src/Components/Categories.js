@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function Categories() {
   return (
@@ -8,4 +9,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+export default connect()(Categories);

@@ -3,6 +3,7 @@ import React from "react";
 import Expenses from "./Expenses";
 import Accounts from "./Accounts";
 import Categories from "./Categories";
+import { connect } from "react-redux";
 
 class View extends React.Component {
   render() {
@@ -40,4 +41,4 @@ class View extends React.Component {
     }
   }
 }
-export default View;
+export default connect()(View);

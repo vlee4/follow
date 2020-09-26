@@ -64,6 +64,7 @@ body {
   border: black dashed;
   width: auto;
   height: 100%;
+  padding-bottom: 2em;
 }
 
 .expensesWindow {
@@ -95,6 +96,22 @@ td {
   margin: 1em;
   border: blue double;
 }
+
+.addExpenseForm {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  column-gap: 1em;
+  padding: 0 1em 0 2em; */
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  background-color: rgba(23, 172, 152, 0.822);
+}
+
+/* .addExpenseForm div {
+  justify-self: start;
+} */
 
 /* .App-logo {
   height: 40vmin;

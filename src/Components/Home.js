@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function Home() {
   return (
@@ -9,4 +10,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default connect()(Home);

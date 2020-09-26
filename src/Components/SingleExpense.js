@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function SingleExpense(props) {
   //formatting dates
@@ -35,4 +36,4 @@ function SingleExpense(props) {
   );
 }
 
-export default SingleExpense;
+export default connect()(SingleExpense);
