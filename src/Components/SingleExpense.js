@@ -20,6 +20,7 @@ function SingleExpense(props) {
   let AMOUNT = currencyFormatter.format(props.amount);
   return (
     <tr>
+      <td>{props.id || "ID"}</td>
       <td>{DATE || `January 3, 2020`}</td>
       <td>{props.account || `Acct #1337108049384039 839doj odsf 82`}</td>
       <td>{props.category || "Entertainment"}</td>

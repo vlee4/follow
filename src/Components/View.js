@@ -1,5 +1,7 @@
 import React from "react";
 import SingleExpense from "./SingleExpense";
+import Accounts from "./Accounts";
+import Categories from "./Categories";
 
 class View extends React.Component {
   render() {
@@ -26,25 +28,32 @@ class View extends React.Component {
         Amount: 10330,
       },
     ];
+    if (!this.props.tab) {
+      return <div>Please select how you would like to view your expenses</div>;
+    } else if (this.props.tab === "Accounts") {
+      return <Accounts />;
+    } else if (this.props.tab === "Categories") {
+      return <Categories />;
+    }
+
     return (
       <div className="expensesWindow">
-        {/* if there are no entries, there should be a prompt to add expenses */}
+        <h3>EXPENSES</h3>
         <table>
           <thead>
             <tr>
-              <th>Dates</th>
-              <th>Account #</th>
-              <th>Category</th>
-              <th>Amount</th>
+              {Object.keys(mockData[0]).map((key, idx) => {
+                return <td key={`${key}_${idx}`}>{key}</td>;
+              })}
             </tr>
           </thead>
           <tbody>
-            {/* once there's mock data, can map it out into single component rows */}
-            {mockData.map((entry) => {
+            {mockData.map((entry, idx) => {
               let { id, Date, Account, Category, Amount } = entry;
               return (
                 <SingleExpense
-                  key={id}
+                  key={`${id}_${idx}`}
+                  id={id}
                   date={Date}
                   account={Account}
                   category={Category}
@@ -52,9 +61,6 @@ class View extends React.Component {
                 />
               );
             })}
-
-            {/* <SingleExpense />
-          <SingleExpense /> */}
           </tbody>
         </table>
       </div>
