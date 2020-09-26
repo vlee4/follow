@@ -1,5 +1,5 @@
 import React from "react";
-import Expenses from "./Expenses";
+import View from "./View";
 
 function ExpenseTracker() {
   return (
@@ -11,7 +11,7 @@ function ExpenseTracker() {
         <div>Accounts</div>
         <div>Categories</div>
       </div>
-      <Expenses />
+      <View />
     </div>
   );
 }
