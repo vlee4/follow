@@ -55,30 +55,53 @@ class Expenses extends React.Component {
         Amount: 10330,
       },
     ];
-    if (this.state.expenses.length === 0) {
-      return (
-        <div>
-          <h3>EXPENSES</h3>
-          <div>
-            There are currently no expenses to be displayed. Please add an entry
-            to begin tracking your expenses.
-          </div>
-        </div>
-      );
-    }
+    // if (this.state.expenses.length === 0) {
+    //   return (
+    //     <div>
+    //       <h3>EXPENSES</h3>
+    //       <div>
+    //         There are currently no expenses to be displayed. Please add an entry
+    //         to begin tracking your expenses.
+    //       </div>
 
+    //       {this.state.adding ? (
+    //         <div className="expHeader">
+    //           <div className="expLabels">
+    //             <div>Entry #</div>
+    //             <div>Date</div>
+    //             <div>Account</div>
+    //             <div>Category</div>
+    //             <div>Amount</div>
+    //           </div>
+    //           <AddExpense />
+    //         </div>
+    //       ) : (
+    //         ""
+    //       )}
+    //       {this.state.adding ? (
+    //         <button type="button" onClick={this.cancel}>
+    //           Cancel
+    //         </button>
+    //       ) : (
+    //         <button name="addExpense" onClick={this.handleAddition}>
+    //           +
+    //         </button>
+    //       )}
+    //     </div>
+    //   );
+    // }
     return (
       <div className="expensesWindow">
         <h3>EXPENSES</h3>
-        <table>
-          <thead>
-            <tr>
-              {Object.keys(mockData[0]).map((key, idx) => {
-                return <td key={`${key}_${idx}`}>{key}</td>;
-              })}
-            </tr>
-          </thead>
-          <tbody>
+        <div>
+          <div className="expLabels">
+            <div>Entry #</div>
+            <div>Date</div>
+            <div>Account</div>
+            <div>Category</div>
+            <div>Amount</div>
+          </div>
+          <div>
             {mockData.map((entry, idx) => {
               let { id, Date, Account, Category, Amount } = entry;
               return (
@@ -92,8 +115,8 @@ class Expenses extends React.Component {
                 />
               );
             })}
-          </tbody>
-        </table>
+          </div>
+        </div>
         {this.state.adding ? <AddExpense /> : ""}
         {this.state.adding ? (
           <button type="button" onClick={this.cancel}>

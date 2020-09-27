@@ -62,10 +62,12 @@ class AddExpense extends React.Component {
           onChange={this.handleChange}
           required
         />
-        <button type="submit">Submit</button>
-        <button type="button" onClick={this.cancel}>
-          Cancel
-        </button>
+        <div>
+          <button type="submit">Submit</button>
+          <button type="button" onClick={this.cancel}>
+            Cancel
+          </button>
+        </div>
       </form>
     );
   }
