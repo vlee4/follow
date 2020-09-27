@@ -25,9 +25,9 @@ class Expenses extends React.Component {
   // }
   async toggleForm(event) {
     try {
-      console.log("TOGGLE", event.target.value);
-      this.setState({ adding: event.target.value });
-      await this.props.toggleStatus(event.target.value);
+      // console.log("STATE", this.state.adding);
+      this.setState({ adding: !this.state.adding });
+      await this.props.toggleStatus(!this.state.adding);
       console.log("STATE after toggle", this.state);
     } catch (error) {
       console.log("Error toggling form", error);
@@ -91,11 +91,11 @@ class Expenses extends React.Component {
             ""
           )}
           {this.props.adding ? (
-            <button type="button" onClick={this.toggleForm} value={false}>
+            <button type="button" onClick={this.toggleForm}>
               Close
             </button>
           ) : (
-            <button name="addExpense" value={true} onClick={this.toggleForm}>
+            <button name="addExpense" onClick={this.toggleForm}>
               +
             </button>
           )}

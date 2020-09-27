@@ -68,7 +68,7 @@ export const toggleEntry = (status) => {
 */
 
 //Reduecr
-export default function expenseReducer(state = { adding: false }, action) {
+export default function expenseReducer(state = {}, action) {
   switch (action.type) {
     case GET_EXPENSES:
       return { ...state, expenses: [...action.expenses] };
