@@ -131,11 +131,11 @@ class Expenses extends React.Component {
         </div>
         {this.props.adding ? <AddExpense /> : ""}
         {this.props.adding ? (
-          <button type="button" onClick={this.toggleForm} value={false}>
+          <button type="button" onClick={this.toggleForm}>
             Cancel
           </button>
         ) : (
-          <button name="addExpense" value={true} onClick={this.toggleForm}>
+          <button name="addExpense" onClick={this.toggleForm}>
             +
           </button>
         )}
