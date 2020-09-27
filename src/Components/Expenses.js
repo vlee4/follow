@@ -23,10 +23,15 @@ class Expenses extends React.Component {
   // cancel() {
   //   this.setState({ adding: false });
   // }
-  toggleForm(event) {
-    console.log("TOGGLE", event.target.value);
-    this.setState({ adding: event.target.value });
-    this.props.toggleStatus(event.target.value);
+  async toggleForm(event) {
+    try {
+      console.log("TOGGLE", event.target.value);
+      this.setState({ adding: event.target.value });
+      await this.props.toggleStatus(event.target.value);
+      console.log("STATE after toggle", this.state);
+    } catch (error) {
+      console.log("Error toggling form", error);
+    }
   }
 
   componentDidMount() {
@@ -38,7 +43,7 @@ class Expenses extends React.Component {
   }
 
   render() {
-    console.log("PROPS", this.props);
+    // console.log("PROPS", this.props, "STATE", this.state);
     const mockData = [
       {
         id: 1,
@@ -85,7 +90,7 @@ class Expenses extends React.Component {
           ) : (
             ""
           )}
-          {this.state.adding ? (
+          {this.props.adding ? (
             <button type="button" onClick={this.toggleForm} value={false}>
               Close
             </button>
