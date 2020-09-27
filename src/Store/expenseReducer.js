@@ -1,6 +1,7 @@
 //Actions
 const GET_EXPENSES = "GET_EXPENSES";
 const ADD_EXPENSE = "ADD_EXPENSE";
+const TOGGLE_ADDITION = "TOGGLE_ADDITION";
 
 //Action Creators
 const fetchExpenses = (expenses) => {
@@ -14,6 +15,13 @@ const addExpense = (expense) => {
   return {
     type: ADD_EXPENSE,
     expense,
+  };
+};
+
+const toggleForm = (status) => {
+  return {
+    type: TOGGLE_ADDITION,
+    status,
   };
 };
 
@@ -39,6 +47,12 @@ export const postExpense = (expense) => {
   };
 };
 
+export const toggleEntry = (status) => {
+  return (dispatch) => {
+    dispatch(toggleForm(status));
+  };
+};
+
 /* state={
     adding: t/f;
     expenses: [
@@ -54,12 +68,17 @@ export const postExpense = (expense) => {
 */
 
 //Reduecr
-export default function expenseReducer(state = {}, action) {
+export default function expenseReducer(
+  state = { expenses: [], adding: false },
+  action
+) {
   switch (action.type) {
     case GET_EXPENSES:
       return { ...state, expenses: [...action.expenses] };
     case ADD_EXPENSE:
       return { adding: false, expenses: [...state.expenses, action.expense] };
+    case TOGGLE_ADDITION:
+      return { ...state, adding: action.status };
     default:
       return state;
   }

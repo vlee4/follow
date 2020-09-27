@@ -6,7 +6,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import expenseReducer from "./expenseReducer";
 
 const reducer = combineReducers({
-  expenses: expenseReducer,
+  record: expenseReducer,
 });
 
 const middleware = composeWithDevTools(

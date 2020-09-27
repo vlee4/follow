@@ -1,7 +1,7 @@
 import React from "react";
 import SingleExpense from "./SingleExpense";
 import AddExpense from "./AddExpense";
-import { findExpenses } from "../Store/expenseReducer";
+import { findExpenses, toggleEntry } from "../Store/expenseReducer";
 import { connect } from "react-redux";
 
 class Expenses extends React.Component {
@@ -9,29 +9,36 @@ class Expenses extends React.Component {
     super();
     this.state = {
       adding: false,
-      expenses: [],
+      // expenses: [],
     };
-    this.handleAddition = this.handleAddition.bind(this);
-    this.cancel = this.cancel.bind(this);
+    //   this.handleAddition = this.handleAddition.bind(this);
+    //   this.cancel = this.cancel.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
-  handleAddition() {
-    this.setState({ adding: true });
-  }
+  // handleAddition() {
+  //   this.setState({ adding: true });
+  // }
 
-  cancel() {
-    this.setState({ adding: false });
+  // cancel() {
+  //   this.setState({ adding: false });
+  // }
+  toggleForm(event) {
+    console.log("TOGGLE", event.target.value);
+    this.setState({ adding: event.target.value });
+    this.props.toggleStatus(event.target.value);
   }
 
   componentDidMount() {
     const exp = this.props.getExp();
     console.log("Here's the expenses", exp);
-    if (exp) {
-      this.setState({ expenses: exp });
-    }
+    // if (exp) {
+    //   this.setState({ expenses: exp });
+    // }
   }
 
   render() {
+    console.log("PROPS", this.props);
     const mockData = [
       {
         id: 1,
@@ -55,41 +62,41 @@ class Expenses extends React.Component {
         Amount: 10330,
       },
     ];
-    // if (this.state.expenses.length === 0) {
-    //   return (
-    //     <div>
-    //       <h3>EXPENSES</h3>
-    //       <div>
-    //         There are currently no expenses to be displayed. Please add an entry
-    //         to begin tracking your expenses.
-    //       </div>
+    if (!this.props.expenses || this.props.expenses.length === 0) {
+      return (
+        <div>
+          <h3>EXPENSES</h3>
+          <div>
+            There are currently no expenses to be displayed. Please add an entry
+            to begin tracking your expenses.
+          </div>
 
-    //       {this.state.adding ? (
-    //         <div className="expHeader">
-    //           <div className="expLabels">
-    //             <div>Entry #</div>
-    //             <div>Date</div>
-    //             <div>Account</div>
-    //             <div>Category</div>
-    //             <div>Amount</div>
-    //           </div>
-    //           <AddExpense />
-    //         </div>
-    //       ) : (
-    //         ""
-    //       )}
-    //       {this.state.adding ? (
-    //         <button type="button" onClick={this.cancel}>
-    //           Cancel
-    //         </button>
-    //       ) : (
-    //         <button name="addExpense" onClick={this.handleAddition}>
-    //           +
-    //         </button>
-    //       )}
-    //     </div>
-    //   );
-    // }
+          {this.state.adding ? (
+            <div className="expHeader">
+              <div className="expLabels">
+                <div>Entry #</div>
+                <div>Date</div>
+                <div>Account</div>
+                <div>Category</div>
+                <div>Amount</div>
+              </div>
+              <AddExpense />
+            </div>
+          ) : (
+            ""
+          )}
+          {this.state.adding ? (
+            <button type="button" onClick={this.toggleForm} value={false}>
+              Close
+            </button>
+          ) : (
+            <button name="addExpense" value={true} onClick={this.toggleForm}>
+              +
+            </button>
+          )}
+        </div>
+      );
+    }
     return (
       <div className="expensesWindow">
         <h3>EXPENSES</h3>
@@ -102,7 +109,7 @@ class Expenses extends React.Component {
             <div>Amount</div>
           </div>
           <div>
-            {mockData.map((entry, idx) => {
+            {this.props.expenses.map((entry, idx) => {
               let { id, Date, Account, Category, Amount } = entry;
               return (
                 <SingleExpense
@@ -117,13 +124,13 @@ class Expenses extends React.Component {
             })}
           </div>
         </div>
-        {this.state.adding ? <AddExpense /> : ""}
-        {this.state.adding ? (
-          <button type="button" onClick={this.cancel}>
+        {this.props.adding ? <AddExpense /> : ""}
+        {this.props.adding ? (
+          <button type="button" onClick={this.toggleForm} value={false}>
             Cancel
           </button>
         ) : (
-          <button name="addExpense" onClick={this.handleAddition}>
+          <button name="addExpense" value={true} onClick={this.toggleForm}>
             +
           </button>
         )}
@@ -134,13 +141,15 @@ class Expenses extends React.Component {
 
 const mapState = (state) => {
   return {
-    expenses: state.expenses,
+    expenses: state.record.expenses,
+    adding: state.record.adding,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     getExp: () => dispatch(findExpenses()),
+    toggleStatus: (stat) => dispatch(toggleEntry(stat)),
   };
 };
 

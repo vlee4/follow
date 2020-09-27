@@ -23,7 +23,7 @@ function SingleExpense(props) {
     <div className="expense">
       <div>{props.id || "ID"}</div>
       <div>{DATE || `January 3, 2020`}</div>
-      <div>{props.account || `Acct #1337108049384039 839doj odsf 82`}</div>
+      <div>{props.account || `Acct #1337`}</div>
       <div>{props.category || "Entertainment"}</div>
       <div>{AMOUNT || "$100"}</div>
       <div>

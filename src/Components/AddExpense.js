@@ -19,7 +19,9 @@ class AddExpense extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log("form values:", this.state);
-    this.setState({ adding: false });
+    const { date, account, category, amount } = this.state;
+    const id = this.props.expenses.length + 1;
+    this.props.addExpense({ id, date, account, category, amount });
   }
 
   handleChange(e) {
@@ -75,8 +77,14 @@ class AddExpense extends React.Component {
 
 const mapDispatch = (dispatch) => {
   return {
-    addExpenseForm: (exp) => dispatch(postExpense(exp)),
+    addExpense: (exp) => dispatch(postExpense(exp)),
   };
 };
 
-export default connect(null, mapDispatch)(AddExpense);
+const mapState = (state) => {
+  return {
+    expenses: state.record.expenses,
+  };
+};
+
+export default connect(mapState, mapDispatch)(AddExpense);
